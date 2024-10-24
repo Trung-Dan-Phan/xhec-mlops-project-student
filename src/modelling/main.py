@@ -19,8 +19,10 @@ def main(trainset_path: Path) -> None:
     # Preprocess data
     X_train, X_test, y_train, y_test, label_encoder = preprocess_data(df)
 
-    # (Optional) Pickle encoder
+    # Pickle encoder
     encoder_path = Path("src/web_service/local_objects/label_encoder.pkl")
+    # Create the directory if it doesn't exist
+    encoder_path.parent.mkdir(parents=True, exist_ok=True)
     pickle_object(label_encoder, encoder_path)
 
     # Train model
@@ -28,9 +30,11 @@ def main(trainset_path: Path) -> None:
 
     # Pickle model
     model_path = Path("src/web_service/local_objects/random_forest_model.pkl")
+    # Create the directory if it doesn't exist
+    model_path.parent.mkdir(parents=True, exist_ok=True)
     pickle_object(model, model_path)
 
-    # Optional: Make predictions on the test set and calculate RMSE
+    # Make predictions on the test set and calculate RMSE
     y_pred = model.predict(X_test)
     rmse = calculate_rmse(y_test, y_pred)
     print(f"RMSE: {rmse}")
