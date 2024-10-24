@@ -8,5 +8,6 @@ pydantic>=1,<2
 uvicorn==0.23.2
 fastapi==0.103.2
 prefect==2.13.7
-kagglehub == 0.3.3
-
+kagglehub==0.3.3
+pyarrow==8.0.0
+pendulum==2.1.2
