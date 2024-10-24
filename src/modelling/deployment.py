@@ -1,5 +1,5 @@
 import os
-
+import pandas as pd
 from config import DATA_DIRPATH, MODELS_DIRPATH
 from prefect import serve
 from workflows import batch_predict_workflow, train_model_workflow
@@ -11,8 +11,7 @@ if __name__ == "__main__":
         tags=["training", "model"],
         cron="0 0 * * 0",
         parameters={
-            "train_filepath": os.path.join(DATA_DIRPATH, "yellow_tripdata_2021-01.parquet"),
-            "test_filepath": os.path.join(DATA_DIRPATH, "yellow_tripdata_2021-02.parquet"),
+            "df": pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
             "artifacts_filepath": MODELS_DIRPATH,
         },
     )
@@ -23,7 +22,7 @@ if __name__ == "__main__":
         tags=["inference"],
         interval=600,
         parameters={
-            "input_filepath": os.path.join(DATA_DIRPATH, "yellow_tripdata_2021-03.parquet"),
+            "df": pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
             "artifacts_filepath": MODELS_DIRPATH,
         },
     )
