@@ -24,11 +24,11 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
 </details>
 Certainly! Here's an updated version of the README file with a **Table of Contents** section to help users navigate the document easily.
 
----
+
+## PR1: Eda and Modelling
 
 ## Table of Contents
 - [xhec-mlops-project-student](#xhec-mlops-project-student)
-  - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
   - [Objectives](#objectives)
   - [Project Structure](#project-structure)
@@ -38,6 +38,8 @@ Certainly! Here's an updated version of the README file with a **Table of Conten
       - [Using Conda (Recommended)](#using-conda-recommended)
       - [Using pip](#using-pip)
     - [3. Run the Notebooks](#3-run-the-notebooks)
+      - [EDA Notebook (`eda.ipynb`)](#eda-notebook-edaipynb)
+      - [Modeling Notebook (`modelling.ipynb`)](#modeling-notebook-modellingipynb)
   - [Dataset Information](#dataset-information)
   - [CI/CD Pipeline](#cicd-pipeline)
 
@@ -114,13 +116,16 @@ pip install -r requirements.txt
 
 ### 3. Run the Notebooks
 
-After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory.
+After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory. 
 
-1. **EDA Notebook** (`eda.ipynb`):
-   - Open this notebook to perform exploratory data analysis on the Abalone dataset. This includes visualizing distributions and analyzing correlations.
+#### EDA Notebook (`eda.ipynb`)
+   In this part, we created graphs for the distribution of the target variable and all the numeric features' distribution across *Sex*.  
+  
+   Besides, we provide a pairplot which helps in visually understanding how different variables relate to each other, and how those relationships vary based on *Sex*.
 
-2. **Modeling Notebook** (`modelling.ipynb`):
-   - This notebook contains the code to build, train, and evaluate a machine learning model for predicting the abalone's age.
+
+#### Modeling Notebook (`modelling.ipynb`)
+   We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the performance metric, and register the model for each run. Finally, we use MLflow UI to compare all the run under the experiment.
 
 You can start Jupyter notebooks with:
 
