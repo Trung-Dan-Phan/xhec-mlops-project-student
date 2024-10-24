@@ -12,126 +12,37 @@
 
 This repository has for purpose to industrialize the [Abalone age prediction](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) Kaggle contest.
 
-<details>
-<summary>Details on the Abalone Dataset</summary>
+
 
 The age of abalone is determined by cutting the shell through the cone, staining it, and counting the number of rings through a microscope -- a boring and time-consuming task. Other measurements, which are easier to obtain, are used to predict the age.
 
 **Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
 
-You can download the dataset on the [Kaggle page](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
-
-</details>
-Certainly! Here's an updated version of the README file with a **Table of Contents** section to help users navigate the document easily.
-
-
-## PR1: Eda and Modelling
-
-## Table of Contents
-- [xhec-mlops-project-student](#xhec-mlops-project-student)
-  - [Project Overview](#project-overview)
-  - [Objectives](#objectives)
-  - [Project Structure](#project-structure)
-  - [Setup Instructions](#setup-instructions)
-    - [1. Clone the Repository](#1-clone-the-repository)
-    - [2. Set up the Environment](#2-set-up-the-environment)
-      - [Using Conda (Recommended)](#using-conda-recommended)
-      - [Using pip](#using-pip)
-    - [3. Run the Notebooks](#3-run-the-notebooks)
-      - [EDA Notebook (`eda.ipynb`)](#eda-notebook-edaipynb)
-      - [Modeling Notebook (`modelling.ipynb`)](#modeling-notebook-modellingipynb)
-  - [Dataset Information](#dataset-information)
-  - [CI/CD Pipeline](#cicd-pipeline)
-
----
-
-## Project Overview
-
-This project aims to explore the [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) and build a machine learning model to **predict the age (number of rings)** of an abalone. The dataset provides various features such as length, diameter, and height, which can help in predicting the age of abalones.
-
-The project follows **MLOps principles** for continuous integration, code quality, and reproducibility.
-
-## Objectives
-
-1. **Exploratory Data Analysis (EDA):**
-   - Perform a detailed exploration of the Abalone dataset to understand the distribution of features, correlations, and trends.
-   
-2. **Modeling:**
-   - Build an initial machine learning model to predict the number of rings (which corresponds to the abalone's age).
-
-## Project Structure
-
-```plaintext
-.
-├── assets/                   # Directory for storing model or dataset-related assets
-├── notebooks/                # Jupyter notebooks for EDA and modeling
-│   ├── eda.ipynb             # Notebook for exploratory data analysis
-│   └── modelling.ipynb       # Notebook for building and training a machine learning model
-├── .gitignore                # Files and directories to ignore in Git
-├── environment.yml           # Conda environment setup file
-├── pyproject.toml            # Project configuration (for build systems or metadata)
-├── README.md                 # Project documentation (this file)
-├── requirements.in           # Base dependencies
-└── PR_1.md                   # Pull request describing the current changes
-```
-
-## Setup Instructions
-
-### 1. Clone the Repository
-
-First, clone this repository to your local machine:
-
-```bash
-git clone https://github.com/Trung-Dan-Phan/xhec-mlops-project-student.git
-cd xhec-mlops-project-student
-```
-
-### 2. Set up the Environment
-
-You can set up the project environment using **conda** or **pip**. Here's how to proceed.
-
-#### Using Conda (Recommended)
-
-If you use **conda**, create the environment using the provided `environment.yml` file:
-
-```bash
-conda env create -f environment.yml
-```
-
-To activate the environment:
-
-```bash
-conda activate <your-environment-name>
-```
-
-#### Using pip
-
-If you prefer **pip**, you can install the dependencies from `requirements.in`:
-
-```bash
-pip install pip-tools
-pip-compile requirements.in
-pip install -r requirements.txt
-```
-
-### 3. Run the Notebooks
-
-After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory. 
-
-#### EDA Notebook (`eda.ipynb`)
-   In this part, we created graphs for the distribution of the target variable and all the numeric features' distribution across *Sex*.  
-  
-   Besides, we provide a pairplot which helps in visually understanding how different variables relate to each other, and how those relationships vary based on *Sex*.
+## PR0 : Environment setup
+### Environment Setup
+To set up the Python environment for this project, please follow these steps:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Trung-Dan-Phan/xhec-mlops-project-student
+   cd xhec-mlops-project-student
+2. **Create a virtual environment with Conda**:
+   ```bash
+   conda env create -file environment.yml
+3. **Activate the virtual environment**:
+    ```bash
+    conda activate xhec-mlops
+4. **In order to stop using this virtual environment**:
+    ```bash
+    (xhec-mlops) $ deactivate
+5. **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
+6. **Run pre-commit hooks**:
+    ```bash
+    pre-commit install
 
 
-#### Modeling Notebook (`modelling.ipynb`)
-   We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the performance metric, and register the model for each run. Finally, we use MLflow UI to compare all the run under the experiment.
-
-You can start Jupyter notebooks with:
-
-```bash
-jupyter notebook
-```
 
 ## Dataset Information
 
@@ -151,12 +62,21 @@ The [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-data
 - **Shell weight**: After being dried (continuous)
 - **Rings**: Age indicator (target variable)
 
-## CI/CD Pipeline
+### PR1 : EDA and Modelling on notebooks 
 
-The repository includes a **CI/CD pipeline** using GitHub Actions (configured in `.github/workflows/ci.yaml`), which automates the following tasks:
-- Python environment setup.
-- Dependency installation.
-- Code quality checks (e.g., linting with `flake8`).
-- Running unit tests (if added).
+After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory. 
 
-This pipeline triggers on every `push` or `pull request` to ensure consistent code quality and reproducibility.
+#### EDA Notebook (`eda.ipynb`)
+   In this part, we created graphs for the distribution of the target variable and all the numeric features' distribution across *Sex*.  
+  
+   Besides, we provide a pairplot which helps in visually understanding how different variables relate to each other, and how those relationships vary based on *Sex*.
+
+
+#### Modeling Notebook (`modelling.ipynb`)
+   We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the performance metric, and register the model for each run. Finally, we use MLflow UI to compare all the run under the experiment.
+
+You can start Jupyter notebooks with:
+
+```bash
+jupyter notebook
+```
