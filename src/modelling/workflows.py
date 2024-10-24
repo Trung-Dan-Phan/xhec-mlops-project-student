@@ -9,7 +9,6 @@ from training import train_model
 from predicting import predict
 from prefect import flow
 from preprocessing import preprocess_data
-from sklearn.feature_extraction import DictVectorizer
 from sklearn.ensemble import RandomForestRegressor
 
 
@@ -37,7 +36,7 @@ def train_model_workflow(
 
 @flow(name="Batch predict", retries=1, retry_delay_seconds=30)
 def batch_predict_workflow(
-    batch_df: pd.DataFrame, labelsaFrame,
+    batch_df: pd.DataFrame,
     model: Optional[RandomForestRegressor] = None,
     label_encoder: Optional[LabelEncoder] = None,
     artifacts_filepath: Optional[str] = None,
@@ -58,11 +57,11 @@ if __name__ == "__main__":
     from config import DATA_DIRPATH, MODELS_DIRPATH
 
     train_model_workflow(
-        df=pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
+        df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
         artifacts_filepath=MODELS_DIRPATH,
     )
 
     batch_predict_workflow(
-        df=pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
+        df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
         artifacts_filepath=MODELS_DIRPATH,
     )

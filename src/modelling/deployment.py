@@ -11,7 +11,7 @@ if __name__ == "__main__":
         tags=["training", "model"],
         cron="0 0 * * 0",
         parameters={
-            "df": pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
+            "df": pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000).to_json,
             "artifacts_filepath": MODELS_DIRPATH,
         },
     )
@@ -22,7 +22,7 @@ if __name__ == "__main__":
         tags=["inference"],
         interval=600,
         parameters={
-            "df": pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
+            "df": pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000).to_json(),
             "artifacts_filepath": MODELS_DIRPATH,
         },
     )
