@@ -34,25 +34,31 @@ To set up the Python environment for this project, please follow these steps:
    ```bash
    git clone https://github.com/Trung-Dan-Phan/xhec-mlops-project-student
    cd xhec-mlops-project-student
+   ```
 
 2. **Create a virtual environment with Conda**:
    ```bash
    conda env create -file environment.yml
+   ```
 
 3. **Activate the virtual environment**:
     ```bash
     conda activate xhec-mlops
+    ```
 
 4. **In order to stop using this virtual environment**:
     ```bash
     (xhec-mlops) $ deactivate
+    ```
 
 5. **Install dependencies**:
     ```bash
     pip install -r requirements.txt
     pip install -r requirements-dev.txt
+    ```
 
 6. **Run pre-commit hooks**:
     ```bash
     pre-commit install
+    ```
 
