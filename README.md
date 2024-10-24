@@ -20,6 +20,13 @@ The age of abalone is determined by cutting the shell through the cone, staining
 
 **Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
 
+## Group 4:
+- Trung Dan Phan
+- Yuding Duan
+- Alex Bohane
+- Valentine Dana
+- Zineb Mechiche
+
 ## PR0 : Environment setup
 ### Environment Setup
 To set up the Python environment for this project, please follow these steps:
@@ -129,7 +136,7 @@ To monitor the workflow execution in real-time and view the tasks, start the Pre
 ```bash
 prefect server start
 ```
-This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system.
+This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system. After that run the deployment.py to sea all the runs and deployments.
 
 ### 2. Scheduling the Model Retraining
 

@@ -19,23 +19,20 @@ def preprocess_data(df, label_encoder=None):
     # Encode binary feature
     if label_encoder is None:
         label_encoder = LabelEncoder()
-        df['Sex_encoded'] = label_encoder.fit_transform(df['Sex'])
-        
+        df["Sex_encoded"] = label_encoder.fit_transform(df["Sex"])
+
         # Independent variables (X) and target variable (y)
-        X = df.drop(['Rings', 'Sex'], axis=1)
-        y = df['Rings']
-        
+        X = df.drop(["Rings", "Sex"], axis=1)
+        y = df["Rings"]
+
         # Split the data into training and testing sets
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
         return X_train, X_test, y_train, y_test, label_encoder
 
-
     else:
-        df['Sex_encoded'] = label_encoder.transform(df['Sex'])
-        X = df.drop(['Rings', 'Sex'], axis=1)
+        df["Sex_encoded"] = label_encoder.transform(df["Sex"])
+        X = df.drop(["Rings", "Sex"], axis=1)
         return X
-    
-
-
-    
