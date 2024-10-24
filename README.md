@@ -156,14 +156,23 @@ Access the API at http://localhost:8001/docs to view the interactive API documen
 Build the Docker image :
 
 ```bash
-docker build -t mlops-project -f Dockerfile.app .
+docker build -t img .
 ```
 
 Run the Docker container : 
 
 ```bash
-docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 mlops-project
+docker run -p 4201:4201 -p 8001:8001 img  
 ```
 Access the API :
 
-Once the container is running, you can access the FastAPI application at http://localhost:8001/docs
+Once the container is running, you can access the FastAPI application at 
+```
+Configure Prefect to communicate with the server with:
+
+    prefect config set PREFECT_API_URL=http://0.0.0.0:4201/api
+
+View the API reference documentation at http://0.0.0.0:4201/docs
+
+Check out the dashboard at http://0.0.0.0:4201
+```
