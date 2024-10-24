@@ -1,0 +1,6 @@
+artifact_location: file:///Users/abohane/Documents/HEC/MLOPS/xhec-mlops-project-student/notebooks/mlruns/627461816742280132
+creation_time: 1729779542955
+experiment_id: '627461816742280132'
+last_update_time: 1729779542955
+lifecycle_stage: active
+name: Try different values for n_estimator
