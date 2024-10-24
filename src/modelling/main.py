@@ -7,6 +7,7 @@ from preprocessing import preprocess_data
 from training import train_model
 from utils import calculate_rmse, pickle_object
 
+
 def main(trainset_path: Path) -> None:
     """Train a model using the data at the given path and save the model (pickle).
 
@@ -39,9 +40,11 @@ def main(trainset_path: Path) -> None:
     rmse = calculate_rmse(y_test, y_pred)
     print(f"RMSE: {rmse}")
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train a model using the data at the given path.")
+    parser = argparse.ArgumentParser(
+        description="Train a model using the data at the given path."
+    )
     parser.add_argument("trainset_path", type=str, help="Path to the training set")
     args = parser.parse_args()
     main(Path(args.trainset_path))
-

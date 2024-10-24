@@ -1,6 +1,7 @@
 # This module predicts a sample using a given model
 from prefect import task
 
+
 @task(name="Make predictions")
 def predict(model, X_test):
     """

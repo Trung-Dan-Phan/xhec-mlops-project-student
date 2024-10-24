@@ -15,7 +15,7 @@ if __name__ == "__main__":
         tags=["training", "model"],
         cron="0 0 * * 0",  # Run every Sunday at midnight
         parameters={
-            'df_path': df_path,
+            "df_path": df_path,
             "artifacts_filepath": MODELS_DIRPATH,
         },
     )
