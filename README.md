@@ -118,3 +118,19 @@ From the root of the repository, run the `main.py` script using the command:
 
 ```bash
 python src/modelling/main.py data/abalone.csv
+```
+
+## PR3 : From notebooks to modules 
+
+### 1. Start the Prefect UI
+
+To monitor the workflow execution in real-time and view the tasks, start the Prefect Orion UI:
+
+```bash
+prefect orion start
+```
+This will launch the Prefect UI at http://127.0.0.1:4200, where you can visualize the flow, inspect task executions, and manage the system.
+
+### 2. Scheduling the Model Retraining
+
+The deployment setup includes a scheduling mechanism for regular model retraining. To start and manage scheduled runs, use the Prefect UI or define schedules directly in the Prefect flows. For example, you can set up a daily schedule to retrain the model with new data. The UI allows you to trigger, pause, or monitor scheduled runs.
