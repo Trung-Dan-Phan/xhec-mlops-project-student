@@ -16,7 +16,6 @@ This repository has for purpose to industrialize the [Abalone age prediction](ht
 
 
 
-
 The age of abalone is determined by cutting the shell through the cone, staining it, and counting the number of rings through a microscope -- a boring and time-consuming task. Other measurements, which are easier to obtain, are used to predict the age.
 
 **Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
@@ -30,7 +29,6 @@ To set up the Python environment for this project, please follow these steps:
    cd xhec-mlops-project-student
 2. **Create a virtual environment with Conda**:
    ```bash
-   conda env create -file environment.yml
    conda env create -file environment.yml
 3. **Activate the virtual environment**:
     ```bash
