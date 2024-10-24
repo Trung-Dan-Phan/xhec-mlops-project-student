@@ -16,7 +16,6 @@ df_path = "https://raw.githubusercontent.com/Trung-Dan-Phan/xhec-mlops-project-s
 
 @flow(name="Train model")
 def train_model_workflow(
-    #df: pd.DataFrame,
     df_path: str,
     artifacts_filepath: Optional[str] = None,
 ) -> dict:
@@ -41,7 +40,6 @@ def train_model_workflow(
 
 @flow(name="Batch predict", retries=1, retry_delay_seconds=30)
 def batch_predict_workflow(
-    #batch_df: pd.DataFrame,
     batch_df_path: str,
 
     model: Optional[RandomForestRegressor] = None,
@@ -61,16 +59,14 @@ def batch_predict_workflow(
 
 
 if __name__ == "__main__":
-    from config import DATA_DIRPATH, MODELS_DIRPATH
+    from config import MODELS_DIRPATH
 
     train_model_workflow(
-        #df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
         df_path = df_path,
         artifacts_filepath=MODELS_DIRPATH,
     )
 
     batch_predict_workflow(
-        #df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
         batch_df_path = df_path,
         artifacts_filepath=MODELS_DIRPATH,
     )
