@@ -1,11 +1,9 @@
 import numpy as np
-
-from src.web_service.utils import load_object
+from web_service.utils import load_object
 
 # Load the model and label encoder
-model = load_object("src/web_service/local_objects/random_forest_model.pkl")
-label_encoder = load_object("src/web_service/local_objects/label_encoder.pkl")
-
+model = load_object("web_service/local_objects/random_forest_model.pkl")
+label_encoder = load_object("web_service/local_objects/label_encoder.pkl")
 
 def make_prediction(input_data):
     """

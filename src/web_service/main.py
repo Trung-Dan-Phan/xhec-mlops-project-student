@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 
-from src.web_service.lib.inference import make_prediction  # Inference logic
-from src.web_service.lib.models import (PredictionRequest,  # Pydantic models
-                                        PredictionResponse)
-from src.web_service.utils import load_object  # Import the utility function
+from web_service.lib.models import PredictionRequest, PredictionResponse  # Pydantic models
+from web_service.lib.inference import make_prediction  # Inference logic
+from web_service.utils import load_object  # Import the utility function
 
 app = FastAPI(
     title="Prediction API",
@@ -14,8 +13,8 @@ app = FastAPI(
 @app.on_event("startup")
 def load_model_and_encoder():
     global model, label_encoder
-    model = load_object("src/web_service/local_objects/random_forest_model.pkl")
-    label_encoder = load_object("src/web_service/local_objects/label_encoder.pkl")
+    model = load_object("web_service/local_objects/random_forest_model.pkl")
+    label_encoder = load_object("web_service/local_objects/label_encoder.pkl")
 
 
 @app.get("/")
