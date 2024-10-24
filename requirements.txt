@@ -300,9 +300,7 @@ pytz==2023.4
     #   mlflow
     #   pandas
     #   prefect
-pytzdata==2020.1
-    # via pendulum
-pywin32==308
+pywin32==308; platform_system == "Windows"
     # via
     #   docker
     #   jupyter-core
