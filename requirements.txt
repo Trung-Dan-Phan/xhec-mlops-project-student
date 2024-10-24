@@ -4,7 +4,6 @@
 #
 #    pip-compile requirements.in
 #
-
 aiosqlite==0.20.0
     # via prefect
 alembic==1.13.3
@@ -17,8 +16,6 @@ anyio==3.7.1
     #   httpx
     #   prefect
     #   starlette
-appnope==0.1.4
-    # via ipykernel
 apprise==1.9.0
     # via prefect
 asgi-lifespan==2.1.0
@@ -118,10 +115,10 @@ graphviz==0.20.3
     # via prefect
 greenlet==3.1.1
     # via sqlalchemy
-griffe==1.5.1
-    # via prefect
-gunicorn==21.2.0
-    # via mlflow
+griffe==0.27.0
+    # via
+    #   -r requirements.in
+    #   prefect
 h11==0.14.0
     # via
     #   httpcore
@@ -229,7 +226,6 @@ orjson==3.10.10
 packaging==23.2
     # via
     #   docker
-    #   gunicorn
     #   ipykernel
     #   kagglehub
     #   matplotlib
@@ -245,9 +241,9 @@ parso==0.8.4
 pathspec==0.12.1
     # via prefect
 pendulum==2.1.2
-    # via prefect
-pexpect==4.9.0
-    # via ipython
+    # via
+    #   -r requirements.in
+    #   prefect
 pillow==11.0.0
     # via matplotlib
 platformdirs==4.3.6
@@ -260,8 +256,6 @@ protobuf==4.25.5
     # via mlflow
 psutil==6.1.0
     # via ipykernel
-ptyprocess==0.7.0
-    # via pexpect
 pure-eval==0.2.3
     # via stack-data
 pyarrow==8.0.0
