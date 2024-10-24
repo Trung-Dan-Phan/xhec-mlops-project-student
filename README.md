@@ -64,7 +64,7 @@ The [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-data
 
 ### PR1 : EDA and Modelling on notebooks 
 
-After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory. 
+After setting up the environment, we explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory. 
 
 #### EDA Notebook (`eda.ipynb`)
    In this part, we created graphs for the distribution of the target variable and all the numeric features' distribution across *Sex*.  
@@ -73,7 +73,7 @@ After setting up the environment, you can explore the dataset and start modeling
 
 
 #### Modeling Notebook (`modelling.ipynb`)
-   We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the performance metric, and register the model for each run. Finally, we use MLflow UI to compare all the run under the experiment.
+   The dataset is divided in to train and test (8:2). We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the metric, and register the model of the best performance on test set. Finally, we use MLflow UI to compare all the run under the experiment.
 
 You can start Jupyter notebooks with:
 
