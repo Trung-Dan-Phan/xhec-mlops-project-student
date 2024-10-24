@@ -20,6 +20,13 @@ The age of abalone is determined by cutting the shell through the cone, staining
 
 **Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
 
+## Group 4:
+- Trung Dan Phan
+- Yuding Duan
+- Alex Bohane
+- Valentine Dana
+- Zineb Mechiche
+
 ## PR0 : Environment setup
 ### Environment Setup
 To set up the Python environment for this project, please follow these steps:
