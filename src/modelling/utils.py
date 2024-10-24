@@ -1,4 +1,4 @@
-# utils.py
+# This module contains utility functions useful for our training pipeline
 import numpy as np
 import pickle
 from sklearn.metrics import mean_squared_error

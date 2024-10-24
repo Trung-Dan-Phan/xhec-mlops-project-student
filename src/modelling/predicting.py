@@ -1,4 +1,5 @@
-# predicting.py
+# This module predicts a sample using a given model
+
 def predict(model, X_test):
     """
     Make predictions using the trained model on the test data.

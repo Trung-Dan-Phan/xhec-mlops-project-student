@@ -1,4 +1,4 @@
-# training.py
+# This module trains a Regression model
 from sklearn.ensemble import RandomForestRegressor
 
 def train_model(X_train, y_train):
