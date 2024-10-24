@@ -6,6 +6,7 @@ import random
 from typing import Any
 from prefect import flow, task
 
+
 @task(name="Calculate RMSE")
 def calculate_rmse(y_test, y_pred):
     """
@@ -20,6 +21,7 @@ def calculate_rmse(y_test, y_pred):
     """
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     return rmse
+
 
 @task(name="Load pickle")
 def load_pickle(path: str):

@@ -14,9 +14,9 @@ from sklearn.ensemble import RandomForestRegressor
 # we save the data on github, and here we directly read from it.
 df_path = "https://raw.githubusercontent.com/Trung-Dan-Phan/xhec-mlops-project-student/refs/heads/3/use_prefect/data/abalone.csv"
 
+
 @flow(name="Train model")
 def train_model_workflow(
-    #df: pd.DataFrame,
     df_path: str,
     artifacts_filepath: Optional[str] = None,
 ) -> dict:
@@ -33,7 +33,9 @@ def train_model_workflow(
 
     if artifacts_filepath is not None:
         logger.info(f"Saving artifacts to {artifacts_filepath}...")
-        save_pickle(os.path.join(artifacts_filepath, "label_encoder.pkl"), label_encoder)
+        save_pickle(
+            os.path.join(artifacts_filepath, "label_encoder.pkl"), label_encoder
+        )
         save_pickle(os.path.join(artifacts_filepath, "model.pkl"), model)
 
     return {"model": model, "rmse": rmse}
@@ -41,16 +43,16 @@ def train_model_workflow(
 
 @flow(name="Batch predict", retries=1, retry_delay_seconds=30)
 def batch_predict_workflow(
-    #batch_df: pd.DataFrame,
     batch_df_path: str,
-
     model: Optional[RandomForestRegressor] = None,
     label_encoder: Optional[LabelEncoder] = None,
     artifacts_filepath: Optional[str] = None,
 ) -> np.ndarray:
     """Make predictions on a new dataset"""
     if label_encoder is None:
-        label_encoder = load_pickle(os.path.join(artifacts_filepath, "label_encoder.pkl"))
+        label_encoder = load_pickle(
+            os.path.join(artifacts_filepath, "label_encoder.pkl")
+        )
     if model is None:
         model = load_pickle(os.path.join(artifacts_filepath, "model.pkl"))
     batch_df = pd.read_csv(batch_df_path).tail(1000)
@@ -61,16 +63,14 @@ def batch_predict_workflow(
 
 
 if __name__ == "__main__":
-    from config import DATA_DIRPATH, MODELS_DIRPATH
+    from config import MODELS_DIRPATH
 
     train_model_workflow(
-        #df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
-        df_path = df_path,
+        df_path=df_path,
         artifacts_filepath=MODELS_DIRPATH,
     )
 
     batch_predict_workflow(
-        #df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
-        batch_df_path = df_path,
+        batch_df_path=df_path,
         artifacts_filepath=MODELS_DIRPATH,
     )
