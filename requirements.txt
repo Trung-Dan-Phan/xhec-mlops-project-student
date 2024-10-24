@@ -128,7 +128,9 @@ hpack==4.0.0
 httpcore==1.0.6
     # via httpx
 httpx[http2]==0.27.2
-    # via prefect
+    # via
+    #   httpx
+    #   prefect
 hyperframe==6.0.1
     # via h2
 idna==3.10
@@ -237,7 +239,9 @@ parso==0.8.4
 pathspec==0.12.1
     # via prefect
 pendulum==2.1.2
-    # via prefect
+    # via
+    #   -r requirements.in
+    #   prefect
 pillow==11.0.0
     # via matplotlib
 platformdirs==4.3.6
@@ -252,8 +256,10 @@ psutil==6.1.0
     # via ipykernel
 pure-eval==0.2.3
     # via stack-data
-pyarrow==13.0.0
-    # via mlflow
+pyarrow==8.0.0
+    # via
+    #   -r requirements.in
+    #   mlflow
 pyasn1==0.6.1
     # via
     #   pyasn1-modules
