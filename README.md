@@ -134,3 +134,29 @@ This will launch the Prefect UI at localhost:4200, where you can visualize the f
 ### 2. Scheduling the Model Retraining
 
 The deployment setup includes a scheduling mechanism for regular model retraining. To start and manage scheduled runs, use the Prefect UI or define schedules directly in the Prefect flows. For example, you can set up a daily schedule to retrain the model with new data. The UI allows you to trigger, pause, or monitor scheduled runs.
+
+## PR4: FastAPI Deployment
+
+### 1. Run the FastAPI Application
+
+```bash
+uvicorn src.web_service.main:app --host 0.0.0.0 --port 8001 --reload
+```
+Access the API at http://localhost:8001/docs to view the interactive API documentation.
+
+### 2. Docker Deployment
+
+Build the Docker image :
+
+```bash
+docker build -t abalone .
+```
+
+Run the Docker container : 
+
+```bash
+docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 abalone
+```
+Access the API :
+
+Once the container is running, you can access the FastAPI application at http://localhost:8001/docs
