@@ -73,7 +73,7 @@ After setting up the environment, we explore the dataset and start modeling by o
 
 
 #### Modeling Notebook (`modelling.ipynb`)
-   The dataset is divided in to train and test (8:2). We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the metric, and register the model of the best performance on test set. Finally, we use MLflow UI to compare all the run under the experiment.
+   The dataset is divided in to train and test (8:2). We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the metric, and register the model of the best performance on test set. Finally, we use MLflow UI (http://127.0.0.1:5000) to compare all the run under the experiment.
 
 You can start Jupyter notebooks with:
 
