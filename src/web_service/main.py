@@ -1,10 +1,15 @@
 from fastapi import FastAPI
 
-from src.web_service.lib.models import PredictionRequest, PredictionResponse  # Pydantic models
 from src.web_service.lib.inference import make_prediction  # Inference logic
+from src.web_service.lib.models import (PredictionRequest,  # Pydantic models
+                                        PredictionResponse)
 from src.web_service.utils import load_object  # Import the utility function
 
-app = FastAPI(title="Prediction API", description="API for predicting the number of rings based on abalone features")
+app = FastAPI(
+    title="Prediction API",
+    description="API for predicting the number of rings based on abalone features",
+)
+
 
 @app.on_event("startup")
 def load_model_and_encoder():
@@ -27,4 +32,3 @@ def predict(payload: PredictionRequest) -> PredictionResponse:
     prediction = make_prediction(input_data)
 
     return PredictionResponse(prediction=prediction)
-

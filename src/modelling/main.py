@@ -1,8 +1,9 @@
 # This module is the training flow: it reads the data, preprocesses it, trains a model and saves it.
 
 import argparse
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 from preprocessing import preprocess_data
 from training import train_model
 from utils import calculate_rmse, pickle_object

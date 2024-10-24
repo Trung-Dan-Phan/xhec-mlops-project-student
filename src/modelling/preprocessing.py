@@ -1,8 +1,8 @@
 # This module preprocess the data for our Machine Learning Regression model
 import pandas as pd
+from prefect import task
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from prefect import task
 
 
 @task

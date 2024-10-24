@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 from config import DATA_DIRPATH, MODELS_DIRPATH
 from prefect import serve
@@ -34,4 +35,3 @@ if __name__ == "__main__":
 
     # Serve both deployments
     serve(train_model_deployment, batch_predict_deployment)
-
