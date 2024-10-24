@@ -9,7 +9,9 @@ df_path = "https://raw.githubusercontent.com/Trung-Dan-Phan/xhec-mlops-project-s
 
 if __name__ == "__main__":
     # Load the training data
-    training_data = pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000)
+    #training_data = pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000)
+    # training_data = pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000)
+    training_data = pd.read_csv(df_path).head(3000)
 
     # Define the model training deployment
     train_model_deployment = train_model_workflow.to_deployment(
@@ -25,7 +27,8 @@ if __name__ == "__main__":
     )
 
     # Load the batch prediction data
-    batch_prediction_data = pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000)
+    # batch_prediction_data = pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000)
+    batch_prediction_data = pd.read_csv(df_path).tail(1000)
 
     # Define the batch prediction deployment
     batch_predict_deployment = batch_predict_workflow.to_deployment(
