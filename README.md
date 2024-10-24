@@ -5,6 +5,8 @@
 [![Python Version](https://img.shields.io/badge/python-3.9%20%7C%203.10-blue.svg)]()
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+
+
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory/xhec-mlops-project-student/blob/main/.pre-commit-config.yaml)
@@ -12,132 +14,123 @@
 
 This repository has for purpose to industrialize the [Abalone age prediction](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) Kaggle contest.
 
-<details>
-<summary>Details on the Abalone Dataset</summary>
+
 
 The age of abalone is determined by cutting the shell through the cone, staining it, and counting the number of rings through a microscope -- a boring and time-consuming task. Other measurements, which are easier to obtain, are used to predict the age.
 
 **Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
 
-You can download the dataset on the [Kaggle page](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
+## PR0 : Environment setup
+### Environment Setup
+To set up the Python environment for this project, please follow these steps:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Trung-Dan-Phan/xhec-mlops-project-student
+   cd xhec-mlops-project-student
+2. **Create a virtual environment with Conda**:
+   ```bash
+   conda env create -file environment.yml
+3. **Activate the virtual environment**:
+    ```bash
+    conda activate xhec-mlops
+4. **In order to stop using this virtual environment**:
+    ```bash
+    (xhec-mlops) $ deactivate
+5. **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
+6. **Run pre-commit hooks**:
+    ```bash
+    pre-commit install
 
-</details>
 
-## Table of Contents
 
-- [xhec-mlops-project-student](#xhec-mlops-project-student)
-  - [Table of Contents](#table-of-contents)
-  - [Deliverables and Evaluation](#deliverables-and-evaluation)
-    - [Deliverables](#deliverables)
-    - [Evaluation](#evaluation)
-  - [Steps to reproduce to build the deliverable](#steps-to-reproduce-to-build-the-deliverable)
-    - [Pull requests in this project](#pull-requests-in-this-project)
-    - [Tips to work on this project](#tips-to-work-on-this-project)
+## Dataset Information
 
-## Deliverables and notation
+The age of abalone is determined by cutting the shell through the cone, staining it, and counting the number of rings through a microscope -- a boring and time-consuming task. Other measurements, which are easier to obtain, are used to predict the age.
 
-### Deliverables
+**Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
 
-The deliverable of this project is a copy of this repository with the industrialization of the Abalone age prediction model. We expect to see: 
+The [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) contains the following features:
 
-1. a workflow to train a model using Prefect
-- The workflows to train the model and to make the inference (prediction of the age of abalone) are in separate modules and use Prefect `flow` and `task` objects
-- The code to get the trained model and encoder is in a separate module and must be reproducible (not necessarily in a docker container)
-2. a Prefect deployment to retrain the model regularly
-3. an API that runs on a local app and that allows users to make predictions on new data
-  - A working API which can be used to make predictions on new data
-    - The API can run on a docker container
-    - The API has validation on input data (use Pydantic)
+- **Sex**: Male, Female, or Infant (categorical)
+- **Length**: Longest shell measurement (continuous)
+- **Diameter**: Perpendicular to length (continuous)
+- **Height**: With meat in the shell (continuous)
+- **Whole weight**: Weight of the whole abalone (continuous)
+- **Shucked weight**: Weight of meat (continuous)
+- **Viscera weight**: Gut weight (continuous)
+- **Shell weight**: After being dried (continuous)
+- **Rings**: Age indicator (target variable)
 
-### Evaluation
+## PR1 : EDA and Modelling on notebooks 
 
-Each of your pull requests will be graded based on the following criteria:
+After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory. 
 
-- **Clarity** and quality of code
-  - good module structure
-  - naming conventions
-  - use of docstrings and type hinting
-- **Formatting**
-  - respect of clear code conventions
+#### EDA Notebook (`eda.ipynb`)
+   In this part, we created graphs for the distribution of the target variable and all the numeric features' distribution across *Sex*.  
   
-  *P.S. you can use a linter and automatic code formatters to help you with that*
+   Besides, we provide a pairplot which helps in visually understanding how different variables relate to each other, and how those relationships vary based on *Sex*.
 
-- Proper **Functioning** of the code
-  - the code must run without bugs
 
-Bseides the evaluation of the pull requests, we will also evaluate: 
-- **Reproducibility** and clarity of instructions to run the code (we will actually try to run your code)
-  - Having a clear README.md with 
-    - the context of the project
-    - the name of the participants and their github users
-    - the steps to recreate the Python environment
-    - the instructions to run all parts of the code
-- Use of *Pull Requests* (see below) to coordinate your collaboration 
+#### Modeling Notebook (`modelling.ipynb`)
+   We encode the *Sex*, use random forest regression and take rmse as the metric. We put forward the model initially and then use mlfow to track the model's performance across different *n_estimator*. We create an experiment to test different *n_estimator* value and then we log the parameter value, the performance metric, and register the model for each run. Finally, we use MLflow UI to compare all the run under the experiment.
 
-## Steps to reproduce to build the deliverable
-
-To help you with the structure and order of steps to perform in this project, we created different pull requests templates. 
-Each branch in this repository corresponds to a future pull request and has an attached markdown file with the instructions to perform the tasks of the pull request.
-Each branch starts with a number.
-You can follow the order of the branches to build your project and collaborate.
-
-> [!NOTE]
-> There are "TODO" in the code of the different branches. Each "TODO" corresponds to a task to perform to build the project.
-> [!IMPORTANT]
-> Remember to remove all code that is not used before the end of the project (including all TODO tags in the code).
-
-**Please follow these steps**:
-
-- If not done already, create a GitHub account
-- If not done already, create a [Kaggle account](https://www.kaggle.com/account/login?phase=startRegisterTab&returnUrl=%2F) (so you can download the dataset)
-- Fork this repository (one person per group)
-
-**WARNING**: make sure to **unselect** the option "Copy the `master` branch only", so you have all the branches in the forked repository.
-
-- Add the different members of your group as admin to your forked repository
-- Follow the order of the numbered branches and for each branch:
-  - Read the PR_i.md (where i is the number of the branch) file to understand the task to perform
-   > [!NOTE]
-   > Dont forget to integrate your work from past branches (except for when working on branch #1 obviously (!))
-   > ```bash
-   > git checkout branch_number_i
-   > git pull origin master
-   > # At this point, you might have a VIM window opening, you can close it using the command ":wq" 
-   > git push
-   > ```
-    - Do as many commits as necessary on the branch_number_i to perform the task indicated in the corresponding markdown file
-    - Open a pull request from this branch to the main branch of your forked repository
-    - Once done, merge the pull request in the main branch of your forked repository
-
-### Pull requests in this project
-
-Github [Pull Requests](https://docs.github.com/articles/about-pull-requests) are a way to propose changes to a repository. They have for purpose to integrate the work of *feature branches* into the main branch of the repository, with a collaborative review process.
-
-**PR tips:**
-
-Make sure that you select your own repository when selecting the base repository:
-
-![PR Wrong](assets/PR_wrong.png)
-
-It should rather look like this:
-
-![PR Right](assets/PR_right.png)
-
-### Tips to work on this project
-
-- Use a virtual environment to install the dependencies of the project (conda or virtualenv for instance)
-
-- Once your virtual environment is activated, install pre-commit hooks to automatically format your code before each commit:
+You can start Jupyter notebooks with:
 
 ```bash
-pip install pre-commit
+jupyter notebook
+```
+
+## PR2 : From notebooks to modules 
+
+### Objectives:
+
+- Adapt the training code from the notebooks to Python scripts for modularization.
+- Prepare the model deployment using **pickle** for serialization.
+- Set up a Continuous Integration (CI) pipeline to enforce code formatting and linting.
+
+### Steps:
+
+#### 1. Modifying the `src/modelling` Folder
+We have refactored the code from the Jupyter notebooks and moved it into Python scripts in the `src/modelling` folder. This includes data preprocessing, model training, and evaluation. All the logic previously present in the notebooks is now organized into functions and modules to improve maintainability and scalability.
+
+#### 2. Model Deployment with Pickle
+To prepare for deployment, the trained model is serialized using the **pickle** library, allowing it to be saved and loaded later in different environments.
+
+#### 3. Continuous Integration (CI) Setup
+A CI pipeline has been set up to automatically check code quality before merging any changes. The pipeline runs the following tools:
+
+- **Black**: for code formatting.
+- **Flake8** and **Ruff**: for linting and checking for any coding style violations.
+- **Pre-commit**: for enforcing these checks before committing changes to the repository.
+
+To install and set up pre-commit hooks:
+
+```bash
 pre-commit install
 ```
+### Running the Part 2:
+After setting up the environment and installing the dependencies, you can run the training script as follows:
 
-This will guarantee that your code is formatted correctly and of good quality before each commit.
-
-- Use a `requirements.in` file to list the dependencies of your project. You can use the following command to generate a `requirements.txt` file from a `requirements.in` file:
+From the root of the repository, run the `main.py` script using the command:
 
 ```bash
-pip-compile requirements.in
+python src/modelling/main.py data/abalone.csv
 ```
+
+## PR3 : From notebooks to modules 
+
+### 1. Start the Prefect UI
+
+To monitor the workflow execution in real-time and view the tasks, start the Prefect Orion UI:
+
+```bash
+prefect server start
+```
+This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system.
+
+### 2. Scheduling the Model Retraining
+
+The deployment setup includes a scheduling mechanism for regular model retraining. To start and manage scheduled runs, use the Prefect UI or define schedules directly in the Prefect flows. For example, you can set up a daily schedule to retrain the model with new data. The UI allows you to trigger, pause, or monitor scheduled runs.
