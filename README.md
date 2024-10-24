@@ -38,7 +38,7 @@ To set up the Python environment for this project, please follow these steps:
 
 2. **Create a virtual environment with Conda**:
    ```bash
-   conda env create --file environment.yml
+   conda env create -file environment.yml
    ```
 
 3. **Activate the virtual environment**:
@@ -61,3 +61,4 @@ To set up the Python environment for this project, please follow these steps:
     ```bash
     pre-commit install
     ```
+
