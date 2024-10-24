@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 from config import DATA_DIRPATH, MODELS_DIRPATH
 from prefect import serve

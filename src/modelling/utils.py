@@ -1,10 +1,11 @@
 # This module contains utility functions useful for our training pipeline
-import numpy as np
 import pickle
-from sklearn.metrics import mean_squared_error
 import random
 from typing import Any
+
+import numpy as np
 from prefect import flow, task
+from sklearn.metrics import mean_squared_error
 
 
 @task(name="Calculate RMSE")

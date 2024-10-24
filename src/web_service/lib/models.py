@@ -1,6 +1,7 @@
 # Pydantic models for the web service
 from pydantic import BaseModel
 
+
 # Request model for prediction
 class PredictionRequest(BaseModel):
     sex: str
@@ -11,6 +12,7 @@ class PredictionRequest(BaseModel):
     shucked_weight: float
     viscera_weight: float
     shell_weight: float
+
 
 # Response model for prediction
 class PredictionResponse(BaseModel):

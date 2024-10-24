@@ -1,15 +1,16 @@
 import os
 from typing import Optional
-import pandas as pd
+
 import numpy as np
-from sklearn.calibration import LabelEncoder
-from utils import load_pickle, save_pickle, calculate_rmse
+import pandas as pd
 from loguru import logger
-from training import train_model
 from predicting import predict
 from prefect import flow
 from preprocessing import preprocess_data
+from sklearn.calibration import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
+from training import train_model
+from utils import calculate_rmse, load_pickle, save_pickle
 
 # we save the data on github, and here we directly read from it.
 df_path = "https://raw.githubusercontent.com/Trung-Dan-Phan/xhec-mlops-project-student/refs/heads/3/use_prefect/data/abalone.csv"

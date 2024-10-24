@@ -1,5 +1,6 @@
-import pickle
 import os
+import pickle
+
 
 def load_object(file_path):
     """
@@ -18,8 +19,10 @@ def load_object(file_path):
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"The file {file_path} does not exist.")
 
-    with open(file_path, 'rb') as file:
+    with open(file_path, "rb") as file:
         try:
             return pickle.load(file)
         except pickle.UnpicklingError as e:
-            raise pickle.UnpicklingError(f"Could not unpickle the file {file_path}: {e}")
+            raise pickle.UnpicklingError(
+                f"Could not unpickle the file {file_path}: {e}"
+            )
