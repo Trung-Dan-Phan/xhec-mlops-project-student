@@ -149,13 +149,13 @@ Access the API at http://localhost:8001/docs to view the interactive API documen
 Build the Docker image :
 
 ```bash
-docker build -t abalone .
+docker build -t mlops-project -f Dockerfile.app .
 ```
 
 Run the Docker container : 
 
 ```bash
-docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 abalone
+docker run -p 0.0.0.0:8000:8001 -p 0.0.0.0:4200:4201 mlops-project
 ```
 Access the API :
 
