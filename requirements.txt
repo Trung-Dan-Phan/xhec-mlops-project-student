@@ -300,6 +300,10 @@ pytz==2023.4
     #   prefect
 pytzdata==2020.1
     # via pendulum
+pywin32==308
+    # via
+    #   docker
+    #   jupyter-core
 pyyaml==6.0.2
     # via
     #   apprise
