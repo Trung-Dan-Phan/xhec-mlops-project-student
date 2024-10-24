@@ -22,122 +22,136 @@ The age of abalone is determined by cutting the shell through the cone, staining
 You can download the dataset on the [Kaggle page](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
 
 </details>
+Certainly! Here's an updated version of the README file with a **Table of Contents** section to help users navigate the document easily.
+
+---
 
 ## Table of Contents
-
 - [xhec-mlops-project-student](#xhec-mlops-project-student)
   - [Table of Contents](#table-of-contents)
-  - [Deliverables and Evaluation](#deliverables-and-evaluation)
-    - [Deliverables](#deliverables)
-    - [Evaluation](#evaluation)
-  - [Steps to reproduce to build the deliverable](#steps-to-reproduce-to-build-the-deliverable)
-    - [Pull requests in this project](#pull-requests-in-this-project)
-    - [Tips to work on this project](#tips-to-work-on-this-project)
+  - [Project Overview](#project-overview)
+  - [Objectives](#objectives)
+  - [Project Structure](#project-structure)
+  - [Setup Instructions](#setup-instructions)
+    - [1. Clone the Repository](#1-clone-the-repository)
+    - [2. Set up the Environment](#2-set-up-the-environment)
+      - [Using Conda (Recommended)](#using-conda-recommended)
+      - [Using pip](#using-pip)
+    - [3. Run the Notebooks](#3-run-the-notebooks)
+  - [Dataset Information](#dataset-information)
+  - [CI/CD Pipeline](#cicd-pipeline)
 
-## Deliverables and notation
+---
 
-### Deliverables
+## Project Overview
 
-The deliverable of this project is a copy of this repository with the industrialization of the Abalone age prediction model. We expect to see: 
+This project aims to explore the [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) and build a machine learning model to **predict the age (number of rings)** of an abalone. The dataset provides various features such as length, diameter, and height, which can help in predicting the age of abalones.
 
-1. a workflow to train a model using Prefect
-- The workflows to train the model and to make the inference (prediction of the age of abalone) are in separate modules and use Prefect `flow` and `task` objects
-- The code to get the trained model and encoder is in a separate module and must be reproducible (not necessarily in a docker container)
-2. a Prefect deployment to retrain the model regularly
-3. an API that runs on a local app and that allows users to make predictions on new data
-  - A working API which can be used to make predictions on new data
-    - The API can run on a docker container
-    - The API has validation on input data (use Pydantic)
+The project follows **MLOps principles** for continuous integration, code quality, and reproducibility.
 
-### Evaluation
+## Objectives
 
-Each of your pull requests will be graded based on the following criteria:
+1. **Exploratory Data Analysis (EDA):**
+   - Perform a detailed exploration of the Abalone dataset to understand the distribution of features, correlations, and trends.
+   
+2. **Modeling:**
+   - Build an initial machine learning model to predict the number of rings (which corresponds to the abalone's age).
 
-- **Clarity** and quality of code
-  - good module structure
-  - naming conventions
-  - use of docstrings and type hinting
-- **Formatting**
-  - respect of clear code conventions
-  
-  *P.S. you can use a linter and automatic code formatters to help you with that*
+## Project Structure
 
-- Proper **Functioning** of the code
-  - the code must run without bugs
-
-Bseides the evaluation of the pull requests, we will also evaluate: 
-- **Reproducibility** and clarity of instructions to run the code (we will actually try to run your code)
-  - Having a clear README.md with 
-    - the context of the project
-    - the name of the participants and their github users
-    - the steps to recreate the Python environment
-    - the instructions to run all parts of the code
-- Use of *Pull Requests* (see below) to coordinate your collaboration 
-
-## Steps to reproduce to build the deliverable
-
-To help you with the structure and order of steps to perform in this project, we created different pull requests templates. 
-Each branch in this repository corresponds to a future pull request and has an attached markdown file with the instructions to perform the tasks of the pull request.
-Each branch starts with a number.
-You can follow the order of the branches to build your project and collaborate.
-
-> [!NOTE]
-> There are "TODO" in the code of the different branches. Each "TODO" corresponds to a task to perform to build the project.
-> [!IMPORTANT]
-> Remember to remove all code that is not used before the end of the project (including all TODO tags in the code).
-
-**Please follow these steps**:
-
-- If not done already, create a GitHub account
-- If not done already, create a [Kaggle account](https://www.kaggle.com/account/login?phase=startRegisterTab&returnUrl=%2F) (so you can download the dataset)
-- Fork this repository (one person per group)
-
-**WARNING**: make sure to **unselect** the option "Copy the `master` branch only", so you have all the branches in the forked repository.
-
-- Add the different members of your group as admin to your forked repository
-- Follow the order of the numbered branches and for each branch:
-  - Read the PR_i.md (where i is the number of the branch) file to understand the task to perform
-   > [!NOTE]
-   > Dont forget to integrate your work from past branches (except for when working on branch #1 obviously (!))
-   > ```bash
-   > git checkout branch_number_i
-   > git pull origin master
-   > # At this point, you might have a VIM window opening, you can close it using the command ":wq" 
-   > git push
-   > ```
-    - Do as many commits as necessary on the branch_number_i to perform the task indicated in the corresponding markdown file
-    - Open a pull request from this branch to the main branch of your forked repository
-    - Once done, merge the pull request in the main branch of your forked repository
-
-### Pull requests in this project
-
-Github [Pull Requests](https://docs.github.com/articles/about-pull-requests) are a way to propose changes to a repository. They have for purpose to integrate the work of *feature branches* into the main branch of the repository, with a collaborative review process.
-
-**PR tips:**
-
-Make sure that you select your own repository when selecting the base repository:
-
-![PR Wrong](assets/PR_wrong.png)
-
-It should rather look like this:
-
-![PR Right](assets/PR_right.png)
-
-### Tips to work on this project
-
-- Use a virtual environment to install the dependencies of the project (conda or virtualenv for instance)
-
-- Once your virtual environment is activated, install pre-commit hooks to automatically format your code before each commit:
-
-```bash
-pip install pre-commit
-pre-commit install
+```plaintext
+.
+├── assets/                   # Directory for storing model or dataset-related assets
+├── notebooks/                # Jupyter notebooks for EDA and modeling
+│   ├── eda.ipynb             # Notebook for exploratory data analysis
+│   └── modelling.ipynb       # Notebook for building and training a machine learning model
+├── .gitignore                # Files and directories to ignore in Git
+├── environment.yml           # Conda environment setup file
+├── pyproject.toml            # Project configuration (for build systems or metadata)
+├── README.md                 # Project documentation (this file)
+├── requirements.in           # Base dependencies
+└── PR_1.md                   # Pull request describing the current changes
 ```
 
-This will guarantee that your code is formatted correctly and of good quality before each commit.
+## Setup Instructions
 
-- Use a `requirements.in` file to list the dependencies of your project. You can use the following command to generate a `requirements.txt` file from a `requirements.in` file:
+### 1. Clone the Repository
+
+First, clone this repository to your local machine:
 
 ```bash
+git clone https://github.com/your-repo/xhec-mlops-project-student.git
+cd xhec-mlops-project-student
+```
+
+### 2. Set up the Environment
+
+You can set up the project environment using **conda** or **pip**. Here's how to proceed.
+
+#### Using Conda (Recommended)
+
+If you use **conda**, create the environment using the provided `environment.yml` file:
+
+```bash
+conda env create -f environment.yml
+```
+
+To activate the environment:
+
+```bash
+conda activate <your-environment-name>
+```
+
+#### Using pip
+
+If you prefer **pip**, you can install the dependencies from `requirements.in`:
+
+```bash
+pip install pip-tools
 pip-compile requirements.in
+pip install -r requirements.txt
 ```
+
+### 3. Run the Notebooks
+
+After setting up the environment, you can explore the dataset and start modeling by opening the Jupyter notebooks in the `notebooks` directory.
+
+1. **EDA Notebook** (`eda.ipynb`):
+   - Open this notebook to perform exploratory data analysis on the Abalone dataset. This includes visualizing distributions and analyzing correlations.
+
+2. **Modeling Notebook** (`modelling.ipynb`):
+   - This notebook contains the code to build, train, and evaluate a machine learning model for predicting the abalone's age.
+
+You can start Jupyter notebooks with:
+
+```bash
+jupyter notebook
+```
+
+## Dataset Information
+
+The age of abalone is determined by cutting the shell through the cone, staining it, and counting the number of rings through a microscope -- a boring and time-consuming task. Other measurements, which are easier to obtain, are used to predict the age.
+
+**Goal**: predict the age of abalone (column "Rings") from physical measurements ("Shell weight", "Diameter", etc...)
+
+The [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) contains the following features:
+
+- **Sex**: Male, Female, or Infant (categorical)
+- **Length**: Longest shell measurement (continuous)
+- **Diameter**: Perpendicular to length (continuous)
+- **Height**: With meat in the shell (continuous)
+- **Whole weight**: Weight of the whole abalone (continuous)
+- **Shucked weight**: Weight of meat (continuous)
+- **Viscera weight**: Gut weight (continuous)
+- **Shell weight**: After being dried (continuous)
+- **Rings**: Age indicator (target variable)
+
+## CI/CD Pipeline
+
+The repository includes a **CI/CD pipeline** using GitHub Actions (configured in `.github/workflows/ci.yaml`), which automates the following tasks:
+- Python environment setup.
+- Dependency installation.
+- Code quality checks (e.g., linting with `flake8`).
+- Running unit tests (if added).
+
+This pipeline triggers on every `push` or `pull request` to ensure consistent code quality and reproducibility.
