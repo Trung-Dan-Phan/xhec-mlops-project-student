@@ -3,7 +3,7 @@
 The goal of this PR is to: 
 
 - [X] Explore the [Abalone dataset](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset)
-- [ ] Do a first version of a model able to predict the age (number of Rings) of an Abalone
+- [X] Do a first version of a model able to predict the age (number of Rings) of an Abalone
 
 Files to be modified: the two notebooks in the [notebooks](./notebooks/) folder.
 
