@@ -6,13 +6,13 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 
+
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory/xhec-mlops-project-student/blob/main/.pre-commit-config.yaml)
 </div>
 
 This repository has for purpose to industrialize the [Abalone age prediction](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) Kaggle contest.
-
 
 
 
@@ -29,7 +29,6 @@ To set up the Python environment for this project, please follow these steps:
    cd xhec-mlops-project-student
 2. **Create a virtual environment with Conda**:
    ```bash
-   conda env create -file environment.yml
    conda env create -file environment.yml
 3. **Activate the virtual environment**:
     ```bash
@@ -119,3 +118,19 @@ From the root of the repository, run the `main.py` script using the command:
 
 ```bash
 python src/modelling/main.py data/abalone.csv
+```
+
+## PR3 : From notebooks to modules 
+
+### 1. Start the Prefect UI
+
+To monitor the workflow execution in real-time and view the tasks, start the Prefect Orion UI:
+
+```bash
+prefect server start
+```
+This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system.
+
+### 2. Scheduling the Model Retraining
+
+The deployment setup includes a scheduling mechanism for regular model retraining. To start and manage scheduled runs, use the Prefect UI or define schedules directly in the Prefect flows. For example, you can set up a daily schedule to retrain the model with new data. The UI allows you to trigger, pause, or monitor scheduled runs.

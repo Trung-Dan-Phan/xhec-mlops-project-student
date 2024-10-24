@@ -1,6 +1,8 @@
 # This module trains a Regression model
 from sklearn.ensemble import RandomForestRegressor
+from prefect import task
 
+@task(name="Train model")
 def train_model(X_train, y_train):
     """
     Train a Random Forest Regressor model on the training data.
