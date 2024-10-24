@@ -57,11 +57,11 @@ if __name__ == "__main__":
     from config import DATA_DIRPATH, MODELS_DIRPATH
 
     train_model_workflow(
-        df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
+        df=pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).head(3000),
         artifacts_filepath=MODELS_DIRPATH,
     )
 
     batch_predict_workflow(
-        df=pd.read_json(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
+        df=pd.read_csv(os.path.join(DATA_DIRPATH, "abalone.csv")).tail(1000),
         artifacts_filepath=MODELS_DIRPATH,
     )
