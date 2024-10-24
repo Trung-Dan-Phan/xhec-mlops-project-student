@@ -2,7 +2,10 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from prefect import task
 
+
+@task
 def preprocess_data(df):
     """
     Preprocess the data by encoding categorical features and splitting the dataset.
