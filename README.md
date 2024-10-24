@@ -127,9 +127,9 @@ python src/modelling/main.py data/abalone.csv
 To monitor the workflow execution in real-time and view the tasks, start the Prefect Orion UI:
 
 ```bash
-prefect orion start
+prefect server start
 ```
-This will launch the Prefect UI at http://127.0.0.1:4200, where you can visualize the flow, inspect task executions, and manage the system.
+This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system.
 
 ### 2. Scheduling the Model Retraining
 
