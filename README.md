@@ -129,7 +129,7 @@ To monitor the workflow execution in real-time and view the tasks, start the Pre
 ```bash
 prefect server start
 ```
-This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system.
+This will launch the Prefect UI at localhost:4200, where you can visualize the flow, inspect task executions, and manage the system. After that run the deployment.py to sea all the runs and deployments.
 
 ### 2. Scheduling the Model Retraining
 
