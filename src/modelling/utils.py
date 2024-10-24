@@ -2,7 +2,11 @@
 import numpy as np
 import pickle
 from sklearn.metrics import mean_squared_error
+import random
+from typing import Any
+from prefect import flow, task
 
+@task(name="Calculate RMSE")
 def calculate_rmse(y_test, y_pred):
     """
     Calculate the Root Mean Squared Error (RMSE) between the actual and predicted values.
@@ -17,16 +21,39 @@ def calculate_rmse(y_test, y_pred):
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     return rmse
 
-def pickle_object(obj, filename):
-    """
-    Serialize an object to a file using pickle.
+@task(name="Load pickle")
+def load_pickle(path: str):
+    with open(path, "rb") as f:
+        loaded_obj = pickle.load(f)
+    return loaded_obj
 
-    Args:
-        obj: The object to serialize (e.g., model or encoder).
-        filename (str): The file path where the object will be saved.
 
-    Returns:
-        None
-    """
-    with open(filename, 'wb') as file:
-        pickle.dump(obj, file)
+@task(name="Save pickle")
+def save_pickle(path: str, obj: Any):
+    with open(path, "wb") as f:
+        pickle.dump(obj, f)
+
+
+@task(retries=3, retry_delay_seconds=60)
+def failure():
+    print("running")
+    if random.randint(1, 10) % 2 == 0:
+        raise ValueError("This number is not even")
+
+
+@flow()
+def test_failure():
+    failure()
+
+
+@task(name="Load", tags=["Serialize"])
+def task_load_pickle(path: str):
+    with open(path, "rb") as f:
+        loaded_obj = pickle.load(f)
+    return loaded_obj
+
+
+@task(name="Save", tags=["Serialize"])
+def task_save_pickle(path: str, obj: dict):
+    with open(path, "wb") as f:
+        pickle.dump(obj, f)
