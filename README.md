@@ -80,7 +80,7 @@ The project follows **MLOps principles** for continuous integration, code qualit
 First, clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your-repo/xhec-mlops-project-student.git
+git clone https://github.com/Trung-Dan-Phan/xhec-mlops-project-student.git
 cd xhec-mlops-project-student
 ```
 
